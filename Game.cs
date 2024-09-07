@@ -10,6 +10,7 @@ namespace _24._2Taller2DSabadoSemana3RPG
     {
         private Player player;
         private List<Enemy> enemies;
+        private int currentEnemyIndex;
 
         
         public void Execute()
@@ -55,7 +56,48 @@ namespace _24._2Taller2DSabadoSemana3RPG
 
         private void GameLoop()
         {
+            bool continueFlag = true;
 
+            while(continueFlag)
+            {
+                PlayerTurn();
+                if (IsEnemyAlive())
+                {
+                    EnemyTurn();
+                    if (!player.IsAlive())
+                    {
+                        continueFlag = false;
+                        Console.WriteLine("El jugador perdió!");
+                    }
+                }
+                else
+                {
+                    continueFlag = false;
+                    Console.WriteLine("El jugador ganó!");
+                }
+            }
+        }
+
+        private void PlayerTurn()
+        {
+
+        }
+
+        private void EnemyTurn()
+        {
+
+        }
+
+        private bool IsEnemyAlive()
+        {
+            foreach(Enemy enemy in enemies)
+            {
+                if(enemy.IsAlive())
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }
