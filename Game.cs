@@ -80,12 +80,50 @@ namespace _24._2Taller2DSabadoSemana3RPG
 
         private void PlayerTurn()
         {
-
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("Turno del jugador");
+            Console.WriteLine(player.GetData());
+            bool continueFlag = true;
+            while (continueFlag)
+            {
+                Console.WriteLine("Lista de enemigos a elegir:");
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    if (enemies[i].IsAlive())
+                    {
+                        Console.WriteLine($"{i}. {enemies[i].GetData()}");
+                    }
+                }
+                int option = int.Parse(Console.ReadLine());
+                if (option < 0 || option >= enemies.Count || !enemies[option].IsAlive())
+                {
+                    Console.WriteLine("El enemigo no es válido");
+                }
+                else
+                {
+                    enemies[option].TakeDamage(player.GetDamage());
+                    continueFlag = false;
+                }
+            }
         }
 
         private void EnemyTurn()
         {
-
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine($"Turno del {enemies[currentEnemyIndex].GetData()}");
+            if (enemies[currentEnemyIndex].IsAlive())
+            {
+                player.TakeDamage(enemies[currentEnemyIndex].GetDamage());
+            }
+            else
+            {
+                Console.WriteLine("El enemigo ya está muerto");
+            }
+            currentEnemyIndex++;
+            if(currentEnemyIndex>=enemies.Count)
+            {
+                currentEnemyIndex = 0;
+            }
         }
 
         private bool IsEnemyAlive()
