@@ -15,9 +15,11 @@ namespace _24._2Taller2DSabadoSemana3RPG
         public void Execute()
         {
             CreatePlayer();
+            Init();
+            GameLoop();
         }
 
-        public void CreatePlayer()
+        private void CreatePlayer()
         {
             bool continueFlag = true;
             Console.WriteLine("Introduce el nombre del jugador");
@@ -43,6 +45,18 @@ namespace _24._2Taller2DSabadoSemana3RPG
             Console.WriteLine($"Se creó a: {player.GetData()}");
         }
 
+        private void Init()
+        {
+            enemies = new List<Enemy>();
+            enemies.Add(new Enemy("Enemy 1", 5, 15));
+            enemies.Add(new Enemy("Enemy 2", 10, 10));
+            enemies.Add(new Enemy("Enemy 3", 15, 5));
+        }
+
+        private void GameLoop()
+        {
+
+        }
 
     }
 }
