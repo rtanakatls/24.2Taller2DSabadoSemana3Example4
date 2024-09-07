@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace _24._2Taller2DSabadoSemana3RPG
 {
-    internal class Program
+    internal class Game
     {
-        static void Main(string[] args)
+        public void Execute()
         {
-            Game game = new Game();
-            game.Execute();
+            Console.WriteLine("Prueba");
         }
+
     }
 }
